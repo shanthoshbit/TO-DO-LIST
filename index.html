@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>To Do List</title>
+ <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<body>
+ <h1>TO DO LIST</h1>
+ <input type="text" id="inputTask" placeholder="Enter a task">
+ <button onclick="addTask()">Add Task</button>
+ <ul id="taskList"></ul>
+ <style>
+    h1{color: rgb(232, 237, 238);
+            background-image:url('https://jooinn.com/images/text-background-4.jpg');
+            
+            background-size: cover;
+            font-family: 'Times New Roman', Times, serif;
+            padding: 70px;
+            font-size:60px;
+            text-align: center;
+            margin: 4px;
+    }
+    body {
+ font-family: Arial, sans-serif;
+ background-image:url('http://cdn.wallpapersafari.com/40/1/LqbMIp.jpg');
+ background-size: cover;
+}
+
+input[type="text"] {
+ width: 1350px;
+ padding: 10px;
+ margin-bottom: 10px;
+ font-size: 1.5cap;
+}
+
+button {
+ padding: 15px;
+ background-color: #007BFF;
+ color: white;
+ border: none;
+ cursor: pointer;
+ 
+}
+
+button:hover {
+ background-color: #0056b3;
+}
+
+ul {
+ list-style-type: none;
+ padding: 6px;
+}
+
+li {
+ padding: 10px;
+ background-color: #f8f9fa;
+ border: 3px solid #e4366a;
+ cursor: pointer;
+}
+
+li:hover {
+ background-color: #e2e6ea;
+}
+
+li .buttons {
+ display: none;
+}
+
+li:hover .buttons {
+ display: inline;
+}
+ </style>
+ <script >
+    function addTask() {
+ var inputTask = document.getElementById('inputTask');
+ var taskList = document.getElementById('taskList');
+  
+ if (inputTask.value !== '') {
+    var li = document.createElement('li');
+    li.innerHTML = inputTask.value + '<span class="buttons"><button class="edit">Edit</button> <button class="delete">Delete</button></span>';
+    
+    li.querySelector('.edit').addEventListener('click', function() {
+      var newTask = prompt('Enter the updated task:');
+      if (newTask) {
+        li.innerHTML = newTask + '<span class="buttons"><button class="edit">Edit</button> <button class="delete">Delete</button></span>';
+      }
+    });
+    
+    li.querySelector('.delete').addEventListener('click', function() {
+      taskList.removeChild(li);
+    });
+    
+    taskList.appendChild(li);
+    inputTask.value = '';
+ }
+}
+ </script>
+</body>
+</html>
